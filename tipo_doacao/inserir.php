@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $descricao = $_POST['descricao_necessidade'];
 
         // Prepara a consulta SQL utilizando prepared statements
-        $query = "INSERT INTO tipo_necessidade (descricao) VALUES (?)";
+        $query = "INSERT INTO tipo_doacao (descricao) VALUES (?)";
 
         // Conecta ao banco de dados
         $conexao = conectar();

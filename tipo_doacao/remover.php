@@ -10,7 +10,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     // Verifica se o usuário confirmou a exclusão
     if (isset($_GET['confirm']) && $_GET['confirm'] === '1') {
         // Prepara a consulta SQL utilizando prepared statements
-        $query = "DELETE FROM tipo_necessidade WHERE id = ?";
+        $query = "DELETE FROM tipo_doacao WHERE id = ?";
 
         // Conecta ao banco de dados
         $conexao = conectar();

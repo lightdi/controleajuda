@@ -189,12 +189,12 @@
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        Cadastor de Necessidade
+        Cadastor de tipo de doação
       </button>
     </h2>
     <div id="flush-collapseTwo" class="accordion-collapse collapse <?php echo ($acordeao_aberto == 2) ? 'show' : ''; ?>" data-bs-parent="#accordionFlushExample">
         <!-- Adicione padding ao formulário -->
-        <form class="row p-3 align-items-end" action="tipo_necessidade/inserir.php" method="POST">
+        <form class="row p-3 align-items-end" action="tipo_doacao/inserir.php" method="POST">
             <div class="col">
                 <div class="row g-3 align-items-center">
                     <!-- Remova a tag <div> não utilizada -->
@@ -225,7 +225,7 @@
                     $conexao = conectar();
 
                     //Criando URL
-                    $query = "SELECT * FROM tipo_necessidade";
+                    $query = "SELECT * FROM tipo_doacao";
 
                     $result = mysqli_query($conexao, $query);
 
@@ -239,8 +239,8 @@
                             echo '<tr>
                                 <th scope="row">' . $linha['id'] . '</th>
                                 <td>' . $linha['descricao'] . '</td>
-                                <td><a class="link-primary" href="tipo_necessidade/alterar.php?id=' . $linha['id'] . '">Alterar</a></td>
-                                <td><a class="link-primary" href="tipo_necessidade/remover.php?id=' . $linha['id'] . '">Remover</a></td>
+                                <td><a class="link-primary" href="tipo_doacao/alterar.php?id=' . $linha['id'] . '">Alterar</a></td>
+                                <td><a class="link-primary" href="tipo_doacao/remover.php?id=' . $linha['id'] . '">Remover</a></td>
                                 </tr>';
                         }
                     }

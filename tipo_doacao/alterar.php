@@ -15,7 +15,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $descricao = $_POST['descricao_necessidade'];
 
             // Prepara a consulta SQL utilizando prepared statements
-            $query = "UPDATE tipo_necessidade SET descricao = ? WHERE id = ?";
+            $query = "UPDATE tipo_doacao SET descricao = ? WHERE id = ?";
 
             // Conecta ao banco de dados
             $conexao = conectar();
@@ -70,7 +70,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     } else {
         // Busca os dados atuais do registro
         $conexao = conectar();
-        $query = "SELECT descricao FROM tipo_necessidade WHERE id = ?";
+        $query = "SELECT descricao FROM tipo_doacao WHERE id = ?";
         $stmt = mysqli_prepare($conexao, $query);
 
         if ($stmt) {
