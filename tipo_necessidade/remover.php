@@ -30,15 +30,15 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                 <head>
                     <meta charset="UTF-8">
                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                    <title>Necessidade Adicionada</title>
+                    <title>Necessidade Removido</title>
                     <!-- Bootstrap CSS -->
                     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
                 </head>
                 <body>
                     <div class="container mt-5">
                         <div class="alert alert-success" role="alert">
-                            <h4 class="alert-heading">Necessidade Adicionada!</h4>
-                            <p>A necessidade foi adicionada com sucesso.</p>
+                            <h4 class="alert-heading">Necessidade Removido!</h4>
+                            <p>A necessidade foi Removido com sucesso.</p>
                             <hr>
                             <a href="../admin.php?abrir=2" class="btn btn-primary">Retornar para Necessidade</a>
                         </div>
@@ -83,7 +83,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                         <h2 class="text-center">Confirmação de Exclusão</h2>
                     </div>
                     <div class="card-body">
-                        <p class="text-center">Tem certeza que deseja excluir este usuário?</p>
+                        <p class="text-center">Tem certeza que deseja excluir este item?</p>
                     </div>
                     <div class="card-footer text-center">
                         <a href="?id=<?php echo $id; ?>&confirm=1" class="btn btn-danger">Sim</a>

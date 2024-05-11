@@ -10,7 +10,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     // Verifica se o usuário confirmou a exclusão
     if (isset($_GET['confirm']) && $_GET['confirm'] === '1') {
         // Prepara a consulta SQL utilizando prepared statements
-        $query = "DELETE FROM tipo_item WHERE id = ?";
+        $query = "DELETE FROM cidade WHERE id = ?";
 
         // Conecta ao banco de dados
         $conexao = conectar();
@@ -37,10 +37,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                 <body>
                     <div class="container mt-5">
                         <div class="alert alert-success" role="alert">
-                            <h4 class="alert-heading">item Removido!</h4>
+                            <h4 class="alert-heading">Cidade Removida!</h4>
                             <p>A item foi Removido com sucesso.</p>
                             <hr>
-                            <a href="../admin.php?abrir=3" class="btn btn-primary">Retornar para item</a>
+                            <a href="../admin.php?abrir=4" class="btn btn-primary">Retornar para item</a>
                         </div>
                     </div>
 
@@ -87,7 +87,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                     </div>
                     <div class="card-footer text-center">
                         <a href="?id=<?php echo $id; ?>&confirm=1" class="btn btn-danger">Sim</a>
-                        <a href="../admin.php?abrir=3" class="btn btn-primary">Não</a>
+                        <a href="../admin.php?abrir=4" class="btn btn-primary">Não</a>
                     </div>
                 </div>
             </div>

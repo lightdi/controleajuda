@@ -9,13 +9,13 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
     // Verifica se o formulário foi submetido
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Verifica se o campo 'descricao_necessidade' está definido
-        if (isset($_POST['descricao_necessidade'])) {
-            // Pega a descrição da necessidade
-            $descricao = $_POST['descricao_necessidade'];
+        // Verifica se o campo 'descricao_item' está definido
+        if (isset($_POST['descricao_item'])) {
+            // Pega a descrição da item
+            $descricao = $_POST['descricao_item'];
 
             // Prepara a consulta SQL utilizando prepared statements
-            $query = "UPDATE tipo_necessidade SET descricao = ? WHERE id = ?";
+            $query = "UPDATE tipo_item SET descricao = ? WHERE id = ?";
 
             // Conecta ao banco de dados
             $conexao = conectar();
@@ -29,8 +29,29 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
                 // Executa a declaração
                 if (mysqli_stmt_execute($stmt)) {
-                    echo "<h2>Registro alterado com sucesso</h2>";
-                    echo '<a href="../admin.php" class="btn btn-primary">Retornar para usuários</a>';
+                    echo '<!DOCTYPE html>
+                <html lang="pt">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>item Removido</title>
+                    <!-- Bootstrap CSS -->
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+                </head>
+                <body>
+                    <div class="container mt-5">
+                        <div class="alert alert-success" role="alert">
+                            <h4 class="alert-heading">Item Alterado!</h4>
+                            <p>A item foi Alterado com sucesso.</p>
+                            <hr>
+                            <a href="../admin.php?abrir=3" class="btn btn-primary">Retornar para item</a>
+                        </div>
+                    </div>
+
+                    <!-- Bootstrap JS -->
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+                </body>
+                </html>';
                 } else {
                     echo "Erro ao alterar registro: " . mysqli_stmt_error($stmt);
                 }
@@ -44,12 +65,12 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             // Fecha a conexão
             mysqli_close($conexao);
         } else {
-            echo "Descrição da necessidade não fornecida.";
+            echo "Descrição da item não fornecida.";
         }
     } else {
         // Busca os dados atuais do registro
         $conexao = conectar();
-        $query = "SELECT descricao FROM tipo_necessidade WHERE id = ?";
+        $query = "SELECT descricao FROM tipo_item WHERE id = ?";
         $stmt = mysqli_prepare($conexao, $query);
 
         if ($stmt) {
@@ -70,7 +91,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alteração de Tipo de Necessidade</title>
+    <title>Alteração de Tipo de item</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -80,16 +101,17 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="text-center">Alteração de Tipo de Necessidade</h2>
+                        <h2 class="text-center">Alteração de Tipo de item</h2>
                     </div>
                     <div class="card-body">
                         <!-- Formulário de alteração -->
                         <form action="" method="post">
                             <div class="mb-3">
-                                <label for="descricao_necessidade" class="form-label">Descrição</label>
-                                <input type="text" class="form-control" id="descricao_necessidade" name="descricao_necessidade" value="<?php echo htmlspecialchars($descricao); ?>">
+                                <label for="descricao_item" class="form-label">Descrição</label>
+                                <input type="text" class="form-control" id="descricao_item" name="descricao_item" value="<?php echo htmlspecialchars($descricao); ?>">
                             </div>
                             <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                            <a href="../admin.php?abrir=3" class="btn btn-secondary">Retornar</a>
                         </form>
                     </div>
                 </div>

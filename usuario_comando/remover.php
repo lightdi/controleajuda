@@ -6,7 +6,7 @@ include_once "../conexao.php";
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     // Pega o id para autorizar
     $id = $_GET['id'];
-
+    
     // Verifica se o usuário confirmou a exclusão
     if (isset($_GET['confirm']) && $_GET['confirm'] === '1') {
         // Prepara a consulta SQL utilizando prepared statements
@@ -18,24 +18,19 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
         // Prepara a declaração
         $stmt = mysqli_prepare($conexao, $query);
 
-        // Verifica se a preparação da declaração foi bem-sucedida
-        if ($stmt) {
-            // Vincula os parâmetros
-            mysqli_stmt_bind_param($stmt, "i", $id);
+        // Vincula os parâmetros
+        mysqli_stmt_bind_param($stmt, "i", $id);
 
-            // Executa a declaração
-            if (mysqli_stmt_execute($stmt)) {
-                echo "<h2>Usuário removido</h2>";
-                echo '<a href="../admin.php?abrir=1" class="btn btn-primary">Retornar para usuários</a>';
-            } else {
-                echo "Erro ao executar a consulta: " . mysqli_stmt_error($stmt);
-            }
-
-            // Fecha a declaração
-            mysqli_stmt_close($stmt);
+        // Executa a declaração
+        if (mysqli_stmt_execute($stmt)) {
+            echo "<h2>Usuário removido</h2>";
+            echo '<a href="../admin.php?abrir=1" class="btn btn-primary">Retornar para usuários</a>';
         } else {
-            echo "Erro ao preparar a declaração: " . mysqli_error($conexao);
+            echo "Erro ao executar a consulta: " . mysqli_stmt_error($stmt);
         }
+
+        // Fecha a declaração
+        mysqli_stmt_close($stmt);
 
         // Fecha a conexão
         mysqli_close($conexao);

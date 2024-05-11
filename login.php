@@ -10,7 +10,7 @@
                 $conexao = conectar();
                     
                 //Criando URL
-                $query = "SELECT * FROM usuario WHERE email = '$email' AND senha = MD5('$senha') AND liberado = 1";
+                $query = "SELECT * FROM usuario WHERE email = '$email' AND senha = MD5('$senha')";
     
                 $result = mysqli_query($conexao, $query); //or die ("Error in query: $query. ".mysqli_error($conexao));
                 
@@ -21,15 +21,23 @@
     
                 }else{
                     $linha = mysqli_fetch_array ($result);
-                    $nome = $linha['nome'];
-                    $id = $linha['id'];
-                    $loged = true;
+                    
+                    if ($linha['liberado'] == 1){
+                        $nome = $linha['nome'];
+                        $id = $linha['id'];
+                        $loged = true;
+    
+                        //Session
+                        $_SESSION["loged"] = $loged;
+                        $_SESSION["nome"] = $nome;
+                        $_SESSION["id"] = $id;
+                        $_SESSION["email"] = $email; 
 
-                    //Session
-                    $_SESSION["loged"] = $loged;
-                    $_SESSION["nome"] = $nome;
-                    $_SESSION["id"] = $id;
-                    $_SESSION["email"] = $email; 
+                    }else {
+                        printf('<div class="alert alert-danger" role="alert">Erro: %s </div>', "O registro do usuário ainda não foi liberado!");
+                    }
+
+                  
 
                     //printf('<div class="alert alert-success" role="alert">Erro: %s </div>', "Registro encontrado");
                 }

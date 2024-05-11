@@ -110,7 +110,7 @@
                     <p>Digite o seu e-mail cadastrado e sua senha e aperte o botão Entrar.</p>
                 </div>
             </div>';
-        //die();
+        die();
     }
 
 
@@ -258,17 +258,132 @@
       </button>
     </h2>
     <div id="flush-collapseThree" class="accordion-collapse collapse <?php echo ($acordeao_aberto == 3) ? 'show' : ''; ?>" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+        <div class="accordion-body">
+            <!-- Adicione padding ao formulário -->
+            <form class="row p-3 align-items-end" action="tipo_item/inserir.php" method="POST">
+                <div class="col">
+                    <div class="row g-3 align-items-center">
+                        <!-- Remova a tag <div> não utilizada -->
+                        <div class="mb-3">
+                            <label for="descricao_item">Descrição</label>
+                            <input name="descricao_item" type="text" class="form-control" id="descricao_necessidade" placeholder="Descrição">
+                        </div>
+                    </div>
+                </div>
+                <div class="col p-3">
+                    <!-- Remova a tag </br> não utilizada -->
+                    <button type="submit" class="btn btn-primary">Inserir</button>
+                </div>
+            </form>
+            <div class="accordion-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Descricao</th>
+                            <th scope="col">Alterar</th>
+                            <th scope="col">Remover</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        //Conexao com o banco de dados
+                        $conexao = conectar();
+
+                        //Criando URL
+                        $query = "SELECT * FROM tipo_item";
+
+                        $result = mysqli_query($conexao, $query);
+
+                        // Verifica se há resultados na consulta
+                        if (mysqli_num_rows($result) == 0) {
+                            // Exibe mensagem de erro caso não haja resultados
+                            printf('<div class="alert alert-danger" role="alert">Erro: %s </div>', "Não há itens!");
+                        } else {
+                            while ($linha = mysqli_fetch_array($result)) {
+                                //Imprime linha da tabela com os dados do banco
+                                echo '<tr>
+                                    <th scope="row">' . $linha['id'] . '</th>
+                                    <td>' . $linha['descricao'] . '</td>
+                                    <td><a class="link-primary" href="tipo_item/alterar.php?id=' . $linha['id'] . '">Alterar</a></td>
+                                    <td><a class="link-primary" href="tipo_item/remover.php?id=' . $linha['id'] . '">Remover</a></td>
+                                    </tr>';
+                            }
+                        }
+                        mysqli_close($conexao);
+                        ?>
+                    </tbody>
+                </table>
+            </div>                    
+
+        </div>
     </div>
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
         Cadastro de Cidade
       </button>
     </h2>
-    <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+    <div id="flush-collapseFour" class="accordion-collapse collapse <?php echo ($acordeao_aberto == 4) ? 'show' : ''; ?>" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+            <!-- Adicione padding ao formulário -->
+            <form class="row p-3 align-items-end" action="cidade/inserir.php" method="POST">
+                <div class="col">
+                    <div class="row g-3 align-items-center">
+                        <!-- Remova a tag <div> não utilizada -->
+                        <div class="mb-3">
+                            <label for="nome_cidade">Cidade</label>
+                            <input name="nome_cidade" type="text" class="form-control" id="nome_cidade" placeholder="Cidade">
+                        </div>
+                    </div>
+                </div>
+                <div class="col p-3">
+                    <!-- Remova a tag </br> não utilizada -->
+                    <button type="submit" class="btn btn-primary">Inserir</button>
+                </div>
+            </form>
+            <div class="accordion-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Descricao</th>
+                            <th scope="col">Alterar</th>
+                            <th scope="col">Remover</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        //Conexao com o banco de dados
+                        $conexao = conectar();
+
+                        //Criando URL
+                        $query = "SELECT * FROM cidade";
+
+                        $result = mysqli_query($conexao, $query);
+
+                        // Verifica se há resultados na consulta
+                        if (mysqli_num_rows($result) == 0) {
+                            // Exibe mensagem de erro caso não haja resultados
+                            printf('<div class="alert alert-danger" role="alert">Erro: %s </div>', "Não há itens!");
+                        } else {
+                            while ($linha = mysqli_fetch_array($result)) {
+                                //Imprime linha da tabela com os dados do banco
+                                echo '<tr>
+                                    <th scope="row">' . $linha['id'] . '</th>
+                                    <td>' . $linha['nome_cidade'] . '</td>
+                                    <td><a class="link-primary" href="cidade/alterar.php?id=' . $linha['id'] . '">Alterar</a></td>
+                                    <td><a class="link-primary" href="cidade/remover.php?id=' . $linha['id'] . '">Remover</a></td>
+                                    </tr>';
+                            }
+                        }
+                        mysqli_close($conexao);
+                        ?>
+                    </tbody>
+                </table>
+            </div> 
+        </div>
     </div>
   </div>
 </div>

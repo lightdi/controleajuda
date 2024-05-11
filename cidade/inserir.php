@@ -5,12 +5,12 @@ include_once "../conexao.php";
 // Verifica se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verifica se o campo 'descricao_Item' está definido
-    if (isset($_POST['descricao_item'])) {
+    if (isset($_POST['nome_cidade'])) {
         // Pega a descrição da Item
-        $descricao = $_POST['descricao_item'];
+        $descricao = $_POST['nome_cidade'];
 
         // Prepara a consulta SQL utilizando prepared statements
-        $query = "INSERT INTO tipo_item (descricao) VALUES (?)";
+        $query = "INSERT INTO cidade (nome_cidade) VALUES (?)";
 
         // Conecta ao banco de dados
         $conexao = conectar();
@@ -39,10 +39,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <body>
                     <div class="container mt-5">
                         <div class="alert alert-success" role="alert">
-                            <h4 class="alert-heading">Tipo de item Adicionado!</h4>
+                            <h4 class="alert-heading">Cidade Adicionado!</h4>
                             <p>A Item foi Adicionado com sucesso.</p>
                             <hr>
-                            <a href="../admin.php?abrir=3" class="btn btn-primary">Retornar para Itens</a>
+                            <a href="../admin.php?abrir=4" class="btn btn-primary">Retornar</a>
                         </div>
                     </div>
 
