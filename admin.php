@@ -240,7 +240,7 @@
                                 <th scope="row">' . $linha['id'] . '</th>
                                 <td>' . $linha['descricao'] . '</td>
                                 <td><a class="link-primary" href="tipo_necessidade/alterar.php?id=' . $linha['id'] . '">Alterar</a></td>
-                                <td><a class="link-primary" href="usuario_comando/remover.php?id=' . $linha['id'] . '">Remover</a></td>
+                                <td><a class="link-primary" href="tipo_necessidade/remover.php?id=' . $linha['id'] . '">Remover</a></td>
                                 </tr>';
                         }
                     }

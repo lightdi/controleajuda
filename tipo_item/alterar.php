@@ -3,7 +3,7 @@
 include_once "../conexao.php";
 
 // Verifica se o ID foi fornecido
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     // Pega o ID para alterar
     $id = $_GET['id'];
 
@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
             // Pega a descrição da necessidade
             $descricao = $_POST['descricao_necessidade'];
 
-            // Prepara a consulta SQL
+            // Prepara a consulta SQL utilizando prepared statements
             $query = "UPDATE tipo_necessidade SET descricao = ? WHERE id = ?";
 
             // Conecta ao banco de dados
@@ -30,7 +30,7 @@ if (isset($_GET['id'])) {
                 // Executa a declaração
                 if (mysqli_stmt_execute($stmt)) {
                     echo "<h2>Registro alterado com sucesso</h2>";
-                    echo '<a href="../admin.php">Retornar para usuários</a>';
+                    echo '<a href="../admin.php" class="btn btn-primary">Retornar para usuários</a>';
                 } else {
                     echo "Erro ao alterar registro: " . mysqli_stmt_error($stmt);
                 }
@@ -65,14 +65,42 @@ if (isset($_GET['id'])) {
         }
 ?>
 
-<!-- Formulário de alteração -->
-<form action="" method="post">
-    <div class="mb-3">
-        <label for="descricao_necessidade" class="form-label">Descrição</label>
-        <input type="text" class="form-control" id="descricao_necessidade" name="descricao_necessidade" value="<?php echo htmlspecialchars($descricao); ?>">
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alteração de Tipo de Necessidade</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="text-center">Alteração de Tipo de Necessidade</h2>
+                    </div>
+                    <div class="card-body">
+                        <!-- Formulário de alteração -->
+                        <form action="" method="post">
+                            <div class="mb-3">
+                                <label for="descricao_necessidade" class="form-label">Descrição</label>
+                                <input type="text" class="form-control" id="descricao_necessidade" name="descricao_necessidade" value="<?php echo htmlspecialchars($descricao); ?>">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-</form>
+
+    <!-- Bootstrap JS (opcional, caso você precise de funcionalidades do Bootstrap que dependam de JavaScript) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
 
 <?php
     }
