@@ -22,7 +22,14 @@
 
     <!-- Login Form final  -->
 
-
+    <?php
+        // Se houver um parâmetro 'abrir' na URL e corresponder a um dos IDs de acordeão, adiciona a classe 'show' para abrir automaticamente o acordeão
+        if(isset($_GET['abrir'])) {
+            $acordeao_aberto = $_GET['abrir'];
+        } else {
+            $acordeao_aberto = ""; // define como vazio se nenhum parâmetro estiver presente
+        }
+    ?>
 
     <!--  Inicio NavBar padrão -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -33,7 +40,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
+                <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="pedido.php">Quem precisa</a>
                 </li>
                 <li class="nav-item">
@@ -47,7 +54,6 @@
                 </li>
                 <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="admin.php">Admin</a>
-                </li>
 
         
             </ul>
@@ -103,7 +109,7 @@
                     <p>Digite o seu e-mail cadastrado e sua senha e aperte o botão Entrar.</p>
                 </div>
             </div>';
-        //die();
+        die();
     }
 
 
@@ -112,8 +118,8 @@
 
 <!-- /.container -->
 
-<div class="container">
 
-Lista de login
 
-</div>
+  </body>
+
+</html>

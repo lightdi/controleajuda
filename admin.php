@@ -41,16 +41,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Quem precisa</a>
+                <a class="nav-link active" aria-current="page" href="pedido.php">Quem precisa</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Quem doa</a>
+                <a class="nav-link active" aria-current="page" href="doacao.php">Quem doa</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Quem transporta</a>
+                <a class="nav-link active" aria-current="page" href="transporte.php">Quem transporta</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Gerenciamento</a>
+                <a class="nav-link active" aria-current="page" href="gerenciamento.php">Gerenciamento</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="admin.php">Admin</a>
